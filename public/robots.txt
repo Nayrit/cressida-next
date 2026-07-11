@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Disallow utility / form confirmation from ranking
+Disallow: /thank-you/
+
+Sitemap: https://cressida.studio/sitemap.xml

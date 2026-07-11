@@ -1,0 +1,232 @@
+/* footer.css */
+
+.bf-footer {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 50;
+  color: #fff;
+  background: transparent; 
+  display: flex;
+  align-items: center;
+  padding: 80px 5vw;
+  font-family: 'Satoshi-Light', sans-serif;
+  overflow: hidden; 
+}
+
+.bf-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  min-height: 600px;
+}
+
+/* --- LEFT COLUMN (Desktop) --- */
+.bf-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  align-items: flex-start; 
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding-right: 60px;
+}
+
+.bf-logo {
+  display: block;
+  line-height: 0;
+  margin-left: -120px;
+}
+
+.bf-logo img {
+  width: 180px; 
+  height: auto;
+  display: block;
+  margin: 60px;
+  filter: brightness(0) invert(1); 
+}
+
+.bf-tagline {
+  font-family: 'San Miguel', sans-serif; 
+  font-size: clamp(40px, 5vw, 80px);
+  line-height: 1.1;
+  font-weight: 400;
+  margin: 0;
+  padding: 40px 0;
+  text-align: left;
+}
+
+.bf-socials {
+  display: flex;
+  gap: 24px;
+}
+
+.bf-socials a {
+  font-size: 24px;
+  color: #fff;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bf-socials a:hover { 
+  opacity: 1; 
+  transform: translateY(-3px);
+}
+
+/* --- RIGHT COLUMN (Desktop) --- */
+.bf-right {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 80px;
+  justify-content: center; 
+}
+
+.bf-content-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 70px; 
+}
+
+.bf-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.bf-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.bf-link {
+  font-size: 22px;
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.bf-link.highlight {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-underline-offset: 6px;
+}
+
+.bf-link:hover { opacity: 0.7; }
+
+.bf-nav-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.bf-nav-row a {
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.bf-nav-row a:hover { opacity: 1; }
+
+.bf-address, .bf-copyright {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* =========================================
+   ✅ MOBILE OPTIMIZATION
+   ========================================= */
+@media (max-width: 900px) {
+  .bf-footer { 
+    /* Notch safe padding */
+    padding-top: max(60px, env(safe-area-inset-top));
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+
+    min-height: auto; 
+    height: auto;
+    display: block; 
+  }
+
+  .bf-container { 
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    height: auto;
+  }
+  
+  /* --- LEFT SIDE --- */
+  .bf-left { 
+    border-right: none; 
+    padding-right: 0; 
+    margin-bottom: 0;
+    align-items: flex-start;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+    padding-bottom: 40px;
+  }
+  
+  /* ✅ LOGO CONTROLS (Use transform to move it) */
+  .bf-logo {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto;
+    display: block;
+    
+    /* 🛠 Adjust these numbers to move logo Left/Right or Up/Down */
+    transform: translate(-90px, 0px); 
+  }
+  
+  .bf-logo img { 
+    width: 300px; 
+    margin: 0 0 24px 0 !important; 
+    display: block;
+  }
+  
+  .bf-tagline { 
+    font-size: 36px; 
+    padding: 0 0 24px; 
+    line-height: 1.2;
+  }
+
+  /* --- RIGHT SIDE --- */
+  .bf-right { 
+    padding-left: 0; 
+    width: 100%;
+  }
+  
+  .bf-content-stack {
+    gap: 40px; 
+  }
+
+  .bf-link {
+    font-size: 18px; 
+    word-break: break-all;
+  }
+
+  /* ✅ Explore Links: Horizontal Line */
+  .bf-nav-row {
+    display: flex;        
+    flex-direction: row;  
+    flex-wrap: wrap;     
+    gap: 24px;            
+    width: 100%;
+  }
+  
+  .bf-nav-row a {
+    font-size: 16px;
+    white-space: nowrap; 
+  }
+}

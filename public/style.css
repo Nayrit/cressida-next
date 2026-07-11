@@ -1,0 +1,394 @@
+/* -----------------------------------
+   Fonts
+----------------------------------- */
+@font-face { font-family: 'San Miguel'; src: url('fonts/san-miguel.regular.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Satoshi-Light'; src: url('fonts/Satoshi-Light.ttf') format('truetype'); font-display: swap; }
+
+/* -----------------------------------
+   Theme variables
+----------------------------------- */
+:root {
+  --color-bg1-default: rgb(10, 10, 10);
+  --color-bg2-default: rgb(25, 15, 15);
+  --color1-default: 189, 71, 71;
+  --color2-default: 220, 40, 20;
+  --color3-default: 255, 150, 60;
+  --color4-default: 255, 210, 140;
+  --color5-default: 240, 230, 220;
+  --color-interactive-default: 220, 40, 20;
+
+  /* Panel color sets */
+/* Panel 1: Crisp Mint */
+--panel-1-bg1: #ffffff; --panel-1-bg2: #2ecc71; --panel-1-c1: 180,220,200; --panel-1-c2: 39,174,96; --panel-1-c3: 120,255,150; --panel-1-c4: 80,220,120; --panel-1-c5: 200,255,200; --panel-1-interactive: 46,204,113;
+
+/* Panel 2: Pale Sun */
+--panel-2-bg1: #ffffff; --panel-2-bg2: #f1c40f; --panel-2-c1: 220,210,180; --panel-2-c2: 243,156,18; --panel-2-c3: 255,240,150; --panel-2-c4: 255,200,50; --panel-2-c5: 255,255,180; --panel-2-interactive: 241,196,15;
+
+/* Panel 3: Soft Cherry */
+--panel-3-bg1: #ffffff; --panel-3-bg2: #e74c3c; --panel-3-c1: 220,180,180; --panel-3-c2: 192,57,43; --panel-3-c3: 255,150,150; --panel-3-c4: 255,100,100; --panel-3-c5: 255,200,200; --panel-3-interactive: 231,76,60;
+
+/* Panel 4: Marmalade */
+--panel-4-bg1: #ffffff; --panel-4-bg2: #e67e22; --panel-4-c1: 220,200,180; --panel-4-c2: 211,84,0; --panel-4-c3: 255,180,120; --panel-4-c4: 255,140,80; --panel-4-c5: 255,220,180; --panel-4-interactive: 230,126,34;
+  --circle-size: 100%;
+  --blending: soft-light;
+}
+.services-page-colors {
+  --color-bg1: var(--color-bg1-default);
+  --color-bg2: var(--color-bg2-default);
+  --color1: var(--color1-default);
+  --color2: var(--color2-default);
+  --color3: var(--color3-default);
+  --color4: var(--color4-default);
+  --color5: var(--color5-default);
+  --color-interactive: var(--color-interactive-default);
+}
+
+/* -----------------------------------
+   Base
+----------------------------------- */
+html { scroll-behavior: smooth; }
+body { font-family: 'San Miguel', sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-color: #0c0a1a; }
+@media (hover: hover) and (pointer: fine) { body { cursor: none; } }
+/* Contact-2 / form flows use the normal system cursor */
+body.contact2-page,
+body.get-started-page,
+body.thank-you-page {
+  cursor: auto !important;
+}
+body.contact2-page *,
+body.get-started-page *,
+body.thank-you-page * {
+  cursor: inherit;
+}
+body.contact2-page a,
+body.contact2-page button,
+body.get-started-page a,
+body.get-started-page button,
+body.thank-you-page a,
+body.thank-you-page button {
+  cursor: pointer !important;
+}
+body.contact2-page #reveal-lens,
+body.contact2-page .glass-cursor {
+  display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .g1, .g2, .g3, .g4, .g5 { animation: none !important; }
+  .gradients-container { filter: none; }
+}
+.skip-link { position: absolute; left: -999px; top: 10px; background: #000; color: #fff; padding: 8px 12px; z-index: 2000; }
+.skip-link:focus { left: 10px; }
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* -----------------------------------
+   Gradient background
+----------------------------------- */
+.gradient-bg { width: 100vw; height: 100vh; position: fixed; inset: 0; z-index: -1; overflow: hidden; background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2)); transition: background 0.6s ease-in-out; }
+.gradient-bg svg { position: absolute; width: 0; height: 0; }
+.gradients-container { filter: url(#goo) blur(40px); width: 100%; height: 100%; will-change: filter; }
+.g1, .g2, .g3, .g4, .g5, .interactive { position: absolute; mix-blend-mode: var(--blending); opacity: 1; will-change: transform, opacity; }
+.g1 { background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat; width: var(--circle-size); height: var(--circle-size); top: calc(50% - var(--circle-size) / 2); left: calc(50% - var(--circle-size) / 2); transform-origin: center center; animation: moveVertical 30s ease infinite; }
+.g2 { background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat; width: var(--circle-size); height: var(--circle-size); top: calc(50% - var(--circle-size) / 2); left: calc(50% - var(--circle-size) / 2); transform-origin: calc(50% - 400px); animation: moveInCircle 20s reverse infinite; }
+.g3 { background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat; width: var(--circle-size); height: var(--circle-size); top: calc(50% - var(--circle-size) / 2 + 200px); left: calc(50% - var(--circle-size) / 2 - 500px); transform-origin: calc(50% + 400px); animation: moveInCircle 40s linear infinite; }
+.g4 { background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat; width: var(--circle-size); height: var(--circle-size); top: calc(50% - var(--circle-size) / 2); left: calc(50% - var(--circle-size) / 2); transform-origin: calc(50% - 200px); animation: moveHorizontal 40s ease infinite; opacity: 0.7; }
+.g5 { background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat; width: calc(var(--circle-size) * 2); height: calc(var(--circle-size) * 2); top: calc(50% - var(--circle-size)); left: calc(50% - var(--circle-size)); transform-origin: calc(50% - 800px) calc(50% + 200px); animation: moveInCircle 20s ease infinite; }
+.interactive { background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat; width: 100%; height: 100%; top: -50%; left: -50%; opacity: 0.7; }
+.grain { position: absolute; inset: 0; background-image: url('noise.png'); opacity: 0.2; pointer-events: none; }
+@keyframes moveInCircle { 0%{transform:rotate(0)} 50%{transform:rotate(180deg)} 100%{transform:rotate(360deg)} }
+@keyframes moveVertical { 0%{transform:translateY(-50%)} 50%{transform:translateY(50%)} 100%{transform:translateY(-50%)} }
+@keyframes moveHorizontal { 0%{transform:translateX(-50%) translateY(-10%)} 50%{transform:translateX(50%) translateY(10%)} 100%{transform:translateX(-50%) translateY(-10%)} }
+
+/* -----------------------------------
+   Header & navigation
+----------------------------------- */
+.header-container { position: absolute; inset: 0 auto auto 0; width: 100%; padding: 10px; z-index: 1000; display: flex; justify-content: space-between; align-items: flex-start; }
+.logo { padding: 10px; margin-left: 10px; z-index: 1001; }
+.logo img { width: 200px; height: auto; transition: width 0.3s ease; }
+.navbar { position: absolute; width: 100%; left: 0; display: flex; justify-content: center; padding: 15px 20px; pointer-events: none; }
+.nav-container { display: flex; gap: 200px; pointer-events: auto; }
+.nav-column { display: flex; gap: 15px; } 
+.nav-link { font-family: 'Satoshi-Light', cursive; color: #fff; text-decoration: none; font-weight: bold; font-size: 15px; transition: all 0.3s ease; text-align: center; display: inline-block; }
+.nav-link:hover { text-decoration: dotted; }
+.letter { display: inline-block; position: relative; }
+.mobile-menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; padding: 10px; z-index: 1100; }
+
+/* -----------------------------------
+   Fixed Corner & Bottom Text
+----------------------------------- */
+.ikigai-fixed {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1001;
+  box-sizing: border-box; 
+}
+.ikigai-left, .ikigai-right {
+  position: absolute;
+  bottom: 0;
+  font-family: 'Satoshi-Light', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  opacity: 0.85;
+  pointer-events: auto;
+}
+.ikigai-left { left: 100px; }
+.ikigai-right { right: 100px; text-align: right; }
+.tagline-top-right {
+  position: fixed;
+  top: 20px;
+  right: 120px;
+  font-family: 'Satoshi-Light', sans-serif;
+  font-size: 15px;
+  color: #fff;
+  text-align: right;
+  line-height: 1.4;
+  z-index: 1001;
+  opacity: 0.9;
+}
+@media (max-width: 991.98px) {
+  .ikigai-left { left: 40px; }
+  .ikigai-right { right: 40px; }
+  .tagline-top-right { right: 40px; }
+}
+@media (max-width: 768px) {
+  .ikigai-fixed {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    gap: 15px; 
+  }
+  .ikigai-left, .ikigai-right {
+    position: static;
+    font-size: 13px;
+    white-space: nowrap; 
+  }
+  .tagline-top-right { 
+    right: 65px;  
+    top: 25px; 
+    font-size: 14px; 
+  }
+}
+
+/* -----------------------------------
+   Main wrapper
+----------------------------------- */
+.main-content-wrapper { position: relative; z-index: 10; isolation: isolate; }
+
+/* -----------------------------------
+   Hero & text reveal
+----------------------------------- */
+.hero-section { height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; }
+.text-container { position: relative; display: flex; justify-content: center; align-items: center; user-select: none; text-align: center; padding: 0 20px; }
+.english-layer, .japanese-layer { display: flex; justify-content: center; align-items: center; }
+.english-layer { z-index: 2; }
+.japanese-layer { position: absolute; inset: 0; z-index: 1; display: none; }
+.text-image { max-width: 90%; height: auto; }
+.english-layer { --mask-size: 0px; --mask-x: 50%; --mask-y: 50%; -webkit-mask: radial-gradient(circle var(--mask-size) at var(--mask-x) var(--mask-y), transparent 99.5%, black 100%); mask: radial-gradient(circle var(--mask-size) at var(--mask-x) var(--mask-y), transparent 99.5%, black 100%); }
+#reveal-lens { position: fixed; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); opacity: 0; z-index: 999; border: 2px solid rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.1); box-shadow: 0 0 25px rgba(255, 255, 255, 0.3); backdrop-filter: saturate(180%) contrast(120%); transition: opacity 0.3s ease, backdrop-filter 0.3s ease; overflow: hidden; }
+#reveal-content { position: absolute; inset: 0; visibility: hidden; opacity: 0; transition: opacity 0.2s ease; }
+#reveal-content img { position: absolute; transform-origin: center center; transition: transform 0.2s ease; }
+
+/* -----------------------------------
+   Projects (horizontal desktop, vertical mobile)
+----------------------------------- */
+.projects-section-horizontal { position: relative; background-color: transparent; overflow: hidden; }
+.projects-track { height: 100vh; width: 400vw; display: flex; flex-wrap: nowrap; will-change: transform; }
+.project-panel {
+  flex: 0 0 100vw;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5vw;
+  color: #fff;
+  box-sizing: border-box;
+}
+.project-content { text-align: center; max-width: 1400px; width: 100%; }
+.project-content img { display: block; width: 100%; max-width: 1000px; height: auto; margin: 0 auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.project-details { margin-top: 30px; }
+.project-details h3 { font-family: 'San Miguel', sans-serif; font-size: 3rem; }
+.project-details p { font-family: 'Satoshi-Light', sans-serif; font-size: 1.2rem; }
+
+@media (max-width: 991.98px) {
+  .projects-section-horizontal { height: auto; overflow: visible; }
+  .projects-track { width: 100% !important; height: auto; display: block; }
+  .project-panel { 
+    flex: none;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto; 
+    padding: 5vh 6vw 8vh 6vw;
+  }
+}
+
+/* -----------------------------------
+   Footer (100vh Interactive & Aesthetic)
+----------------------------------- */
+.footer {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 20;
+  
+  /* FIX: Transparent so the global "red-black" lava lamp shows through */
+  background: transparent;
+  
+  /* Flex Layout for full screen bottom alignment */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+  padding-bottom: 0;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr; /* Asymmetric grid: Brand | Links | Social */
+  gap: 40px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 80px 5vw;
+  align-items: start;
+}
+
+/* Column 1: Brand / About */
+.footer-column:nth-child(1) {
+  padding-right: 60px;
+}
+
+.footer-column h3 {
+  font-family: 'Satoshi-Light', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 30px;
+  display: block;
+}
+
+/* Make "About Cressida" text look like a mission statement */
+.footer-column:nth-child(1) p {
+  font-family: 'San Miguel', sans-serif;
+  font-size: 2.8rem;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0;
+}
+
+/* Links Columns */
+.footer-link {
+  font-family: 'Satoshi-Light', sans-serif;
+  font-size: 1.4rem;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 12px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0.8;
+}
+
+.footer-link:hover {
+  opacity: 1;
+  transform: translateX(10px);
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.social-link {
+  font-family: 'Satoshi-Light', sans-serif;
+  font-size: 1.4rem;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: opacity 0.3s ease;
+  opacity: 0.8;
+  background: none; border: none; width: auto; height: auto;
+}
+
+.social-link:hover {
+  opacity: 1;
+  transform: translateX(5px);
+}
+
+.social-link i { font-size: 1.2rem; }
+
+/* Copyright Bar */
+.footer-bottom {
+  width: 100%;
+  padding: 30px 5vw;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Satoshi-Light', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* -----------------------------------
+   Responsive nav & Footer overrides
+----------------------------------- */
+@media (max-width: 1400px) { .nav-container { gap: 100px; } }
+@media (max-width: 1200px) { .nav-container { gap: 80px; } }
+
+@media (max-width: 991.98px) {
+  #reveal-lens { display: none !important; }
+  
+  .header-container { display: block; align-items: center; }
+  .logo { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); margin-left: 0; z-index: 1001; }
+  .tagline-top-right { position: absolute; top: 45px; right: 20px; font-size: 14px; text-align: right; }
+  .logo img { width: 160px; transition: width 0.3s ease; }
+  .mobile-menu-toggle { display: block; position: absolute; top: 40px; left: 20px; }
+  .navbar { position: static; }
+  .nav-container { display: none; } 
+  .nav-container.active { display: flex; position: fixed; inset: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); z-index: 1050; justify-content: center; align-items: center; flex-direction: column; gap: 30px; }
+  .nav-column { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+  .project-details h3 { font-size: 2rem; }
+  .project-details p { font-size: 1rem; }
+  
+  /* Footer Mobile */
+  .footer { min-height: auto; padding: 60px 0 0; }
+  .footer-container { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 40px; 
+    padding: 40px 20px; 
+  }
+  .footer-column:nth-child(1) { padding-right: 0; }
+  .footer-column:nth-child(1) p { font-size: 2rem; }
+  .social-icons { flex-direction: row; gap: 20px; } 
+  .social-link span { display: none; } 
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+}
+
+@media (max-width: 768px) {
+  .logo img { width: 150px; } 
+}
+
+/* -----------------------------------
+   Reduced motion
+----------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .gradients-container { filter: none; }
+  .g1, .g2, .g3, .g4, .g5, .interactive { animation: none !important; }
+  #reveal-lens, .grain { display: none; }
+}

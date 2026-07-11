@@ -1,0 +1,18 @@
+{
+  "name": "Cressida",
+  "short_name": "Cressida",
+  "description": "AI-driven creative agency — where technology meets art.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0a1a",
+  "theme_color": "#0c0a1a",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/cressida.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
