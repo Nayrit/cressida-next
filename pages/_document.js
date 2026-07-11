@@ -1,5 +1,36 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
+const SPLASH_BOOT_SCRIPT = `
+(function () {
+  var KEY = "cressida_splash_seen";
+  var play = false;
+  try {
+    play =
+      /(?:^|[?&])splash_debug(?:=|&|$)/.test(location.search) ||
+      sessionStorage.getItem(KEY) !== "1";
+  } catch (e) {
+    play = true;
+  }
+  if (!play) return;
+
+  document.documentElement.classList.add("splash-boot");
+
+  var style = document.createElement("style");
+  style.id = "cressida-splash-boot-style";
+  style.textContent =
+    "html.splash-boot #cressida-splash-boot{position:fixed;inset:0;z-index:1000000;pointer-events:none;}" +
+    "html.splash-boot #cressida-splash-boot .cressida-splash-boot-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 45%,#16122a 0%,#0c0a1a 55%,#07060f 100%);}" +
+    "html.splash-boot .header-container .logo img{opacity:0!important;visibility:hidden!important;}";
+  document.head.appendChild(style);
+
+  var el = document.createElement("div");
+  el.id = "cressida-splash-boot";
+  el.setAttribute("aria-hidden", "true");
+  el.innerHTML = '<div class="cressida-splash-boot-bg"></div>';
+  document.body.insertBefore(el, document.body.firstChild);
+})();
+`;
+
 export default function Document() {
   return (
     <Html lang="en">
@@ -28,6 +59,9 @@ export default function Document() {
         <link rel="stylesheet" href="/get-started.css" />
       </Head>
       <body>
+        <script
+          dangerouslySetInnerHTML={{ __html: SPLASH_BOOT_SCRIPT }}
+        />
         <Main />
         <NextScript />
       </body>
